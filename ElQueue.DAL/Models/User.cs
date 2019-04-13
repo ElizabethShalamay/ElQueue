@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ElQueue.DAL.Models
 {
@@ -17,5 +15,7 @@ namespace ElQueue.DAL.Models
         public string Phone { get; set; }
 
         public string Address { get; set; }
+
+        public IEnumerable<TimeSlot> TimeSlots { get; set; }
     }
 }

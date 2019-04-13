@@ -1,4 +1,6 @@
-﻿namespace ElQueue.DAL.Models
+﻿using System.Collections.Generic;
+
+namespace ElQueue.DAL.Models
 {
     public class Queue
     {
@@ -13,5 +15,7 @@
         public Account Account { get; set; }
 
         public string Address { get; set; }
+
+        public IEnumerable<TimeSlot> TimeSlots { get; set; }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using ElQueue.DAL.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ElQueue.DAL.Models
 {
@@ -22,5 +20,7 @@ namespace ElQueue.DAL.Models
         public string Details { get; set; }
 
         public QueueRating Rating { get; set; }
+
+        public IEnumerable<Queue> Queues { get; set; }
     }
 }
