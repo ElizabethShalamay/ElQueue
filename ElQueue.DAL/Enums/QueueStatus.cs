@@ -2,6 +2,7 @@
 {
     public enum QueueStatus
     {
+        FreeTimeSlot,
         TakingTurn,
         Queueing,
         Waiting,
