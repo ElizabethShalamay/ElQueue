@@ -3,6 +3,7 @@ using AutoMapper;
 using ElQueue.BLL.Services;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Repositories;
+using ElQueue.DAL.Repositories.Interfaces;
 using ElQueue.DAL.UnitOfWork;
 using ElQueue.Orchestrator.QueueOrchestrator;
 using ElQueue.Web.Configuration;
