@@ -25,7 +25,7 @@ namespace ElQueue.Web.Controllers
         public async Task<ActionResult<IEnumerable<QueueBm>>> Get()
         {
             var queues = await _queueOrchestrator.GetAllQueuesAsync();
-            return new OkObjectResult(queues);
+            return Ok(queues);
         }
 
         // GET api/values/5
@@ -37,7 +37,7 @@ namespace ElQueue.Web.Controllers
                 return new NotFoundResult();
             }
 
-            return await _queueOrchestrator.GetQueueByIdAsync(id);
+            return Ok(await _queueOrchestrator.GetQueueByIdAsync(id));
         }
 
         //// POST api/values

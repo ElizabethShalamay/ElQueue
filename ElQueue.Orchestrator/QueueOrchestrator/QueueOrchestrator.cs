@@ -73,8 +73,8 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
             var queueWithIdExists = await _storage.Queues.ExistsAsync(queueDto.Id);
             Guard.Argument(() => queueWithIdExists).True();
 
-            var queueWithNameExists = await _storage.Queues.FreeQueueNameExists(queueDto.Id, queueDto.Name);
-            Guard.Argument(() => queueWithNameExists).False();
+            //var queueWithNameExists = await _storage.Queues.FreeQueueNameExists(queueDto.Id, queueDto.Name);
+            //Guard.Argument(() => queueWithNameExists).False();
 
             // var queueBm = await CheckBusinessRulesAndCreateGame(queueDto);
 
