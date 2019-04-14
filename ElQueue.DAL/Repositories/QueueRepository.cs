@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Models;
+using ElQueue.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElQueue.DAL.Repositories
@@ -25,7 +26,6 @@ namespace ElQueue.DAL.Repositories
                 .ToListAsync();
 
             return queues.FirstOrDefault(queue => queue.Id == id);
-
         }
 
         public async Task<IEnumerable<Queue>> GetAsync(Expression<Func<Queue, bool>> predicate)

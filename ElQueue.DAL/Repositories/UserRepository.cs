@@ -1,5 +1,6 @@
 ﻿using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Models;
+using ElQueue.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

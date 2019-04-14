@@ -1,4 +1,5 @@
 ﻿using ElQueue.DAL.Repositories;
+using ElQueue.DAL.Repositories.Interfaces;
 using System.Threading.Tasks;
 
 namespace ElQueue.DAL.UnitOfWork
