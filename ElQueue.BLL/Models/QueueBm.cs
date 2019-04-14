@@ -14,7 +14,7 @@ namespace ElQueue.BLL.Models
 
         public int AccountId { get; set; }
 
-        public AccountBm Account { get; set; }
+        public QueueAccountBm Account { get; set; }
 
         public string Address { get; set; }
 
