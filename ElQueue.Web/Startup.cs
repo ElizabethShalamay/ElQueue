@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ElQueue.BLL.Services;
+using ElQueue.BLL.Services.QueueService;
 using ElQueue.BLL.Services.TimeSlotService;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Repositories;
