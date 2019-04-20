@@ -32,6 +32,14 @@ namespace ElQueue.Orchestrator.Mapping
             CreateMap<NewQueueDto, QueueToUpdateDto>()
                 .ForMember(queue => queue.Id, opt => opt.Ignore())
                 .ReverseMap();
+
+            CreateMap<QueueBm, RawQueue>()
+                .ReverseMap()
+                .ForMember(queue => queue.TimeSlots, opt => opt.Ignore());
+
+            CreateMap<UserBm, RawUser>()
+                .ReverseMap()
+                .ForMember(user => user.TimeSlots, opt => opt.Ignore());
         }
     }
 }
