@@ -5,7 +5,7 @@ using ElQueue.BLL.Models;
 using ElQueue.DAL.Models;
 using ElQueue.DAL.UnitOfWork;
 
-namespace ElQueue.BLL.Services
+namespace ElQueue.BLL.Services.QueueService
 {
     public class QueueService : IQueueService
     {
