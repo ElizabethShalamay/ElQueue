@@ -98,7 +98,9 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
             Guard.Argument(() => datesAreCorrect).True();
             Guard.Argument(() => queueDto.TimeSlotDuration).Positive();
             Guard.Argument(() => queueDto.TimeSlotNumber).Positive();
-            return _mapper.Map<QueueBm>(queueDto);
+
+            var queue = queueDto as QueueToUpdateDto;
+            return _mapper.Map<QueueBm>(queue ?? queueDto);
         }
     }
 }
