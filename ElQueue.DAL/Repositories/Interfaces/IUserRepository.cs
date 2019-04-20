@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace ElQueue.DAL.Repositories
+namespace ElQueue.DAL.Repositories.Interfaces
 {
     public interface IUserRepository
     {

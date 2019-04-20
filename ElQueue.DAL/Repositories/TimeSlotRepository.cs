@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Models;
+using ElQueue.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElQueue.DAL.Repositories

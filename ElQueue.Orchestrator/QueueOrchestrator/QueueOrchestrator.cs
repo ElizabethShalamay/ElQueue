@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dawn;
 using ElQueue.BLL.Models;
+using ElQueue.BLL.Services;
+using ElQueue.DAL.Models;
 using ElQueue.DAL.UnitOfWork;
 using ElQueue.Orchestrator.Dtos;
 
@@ -13,11 +14,13 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
     {
         private readonly IUnitOfWork _storage;
         private readonly IMapper _mapper;
+        private readonly IQueueService _queueService;
 
-        public QueueOrchestrator(IUnitOfWork unitOfWork, IMapper mapper)
+        public QueueOrchestrator(IUnitOfWork unitOfWork, IMapper mapper, IQueueService queueService)
         {
             _storage = unitOfWork;
             _mapper = mapper;
+            _queueService = queueService;
         }
 
         public async Task<bool> CheckIfQueueExistsAsync(int id)
@@ -25,9 +28,14 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
             return await _storage.Queues.ExistsAsync(id);
         }
 
-        public Task<QueueBm> CreateQueueAsync(NewQueueDto gameDto)
+        public async Task<QueueBm> CreateQueueAsync(NewQueueDto queueDto)
         {
-            throw new NotImplementedException();
+            Guard.Argument(() => queueDto).NotNull();
+            var queueWithSameNameExists = await _storage.Queues.ExistsAsync(queueDto.Name);
+
+            var queueBm = CheckBusinessRulesAndCreateQueue(queueDto);
+
+            return await _queueService.CreateQueueAsync(queueBm);
         }
 
         public async Task DeleteQueueAsync(int id)
@@ -76,22 +84,21 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
             var queueWithNameExists = await _storage.Queues.FreeQueueNameExists(queueDto.Id, queueDto.Name);
             Guard.Argument(() => queueWithNameExists).False();
 
-            // var queueBm = await CheckBusinessRulesAndCreateGame(queueDto);
+            var queueBm = CheckBusinessRulesAndCreateQueue(queueDto);
+            var queue = _mapper.Map<Queue>(queueBm);
 
-            //await _gameService.UpdateGameAsync(gameBm);
-
+            await _queueService.UpdateQueueAsync(queueBm);
         }
 
-        //private Task<QueueBm> CheckBusinessRulesAndCreateGame(QueueToUpdateDto queueDto)
-        //{
-        //    Guard.Argument(() => queueDto.Name).NotNull();
-        //    var datesAreCorrect = queueDto.StartTime < queueDto.EndTime;
+        private QueueBm CheckBusinessRulesAndCreateQueue(NewQueueDto queueDto)
+        {
+            Guard.Argument(() => queueDto.Name).NotNull();
+            var datesAreCorrect = queueDto.StartTime < queueDto.EndTime;
 
-        //    Guard.Argument(() => datesAreCorrect).True();
-        //    Guard.Argument(() => queueDto.TimeSlotDuration).Positive();
-        //    Guard.Argument(() => queueDto.TimeSlotNumber).Positive();
-        //    // return Tnew QueueBm();
-        //    // return _queueFactory.        
-        //}
+            Guard.Argument(() => datesAreCorrect).True();
+            Guard.Argument(() => queueDto.TimeSlotDuration).Positive();
+            Guard.Argument(() => queueDto.TimeSlotNumber).Positive();
+            return _mapper.Map<QueueBm>(queueDto);
+        }
     }
 }

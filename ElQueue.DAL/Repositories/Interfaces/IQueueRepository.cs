@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace ElQueue.DAL.Repositories
+namespace ElQueue.DAL.Repositories.Interfaces
 {
     public interface IQueueRepository
     {
@@ -21,6 +21,9 @@ namespace ElQueue.DAL.Repositories
         Task DeleteAsync(int id);
 
         Task<bool> ExistsAsync(int id);
+
+        Task<bool> ExistsAsync(string name);
+
         Task<bool> FreeQueueNameExists(int id, string name);
     }
 }
