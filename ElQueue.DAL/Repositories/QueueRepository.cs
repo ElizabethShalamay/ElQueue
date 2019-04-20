@@ -70,6 +70,11 @@ namespace ElQueue.DAL.Repositories
             return await _context.Queues.AsNoTracking().AnyAsync(queue => queue.Id == id);
         }
 
+        public async Task<bool> ExistsAsync(string name)
+        {
+            return await _context.Queues.AsNoTracking().AnyAsync(queue => queue.Name == name);
+        }
+
         public async Task<bool> FreeQueueNameExists(int id, string name)
         {
             return await _context.Queues.AsNoTracking().AnyAsync(queue => queue.Id != id && queue.Name.Equals(name));
