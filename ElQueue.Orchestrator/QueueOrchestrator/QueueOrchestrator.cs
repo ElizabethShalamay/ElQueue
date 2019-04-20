@@ -87,7 +87,7 @@ namespace ElQueue.Orchestrator.QueueOrchestrator
             var queueBm = CheckBusinessRulesAndCreateQueue(queueDto);
             var queue = _mapper.Map<Queue>(queueBm);
 
-            _storage.Queues.Update(queue);
+            await _queueService.UpdateQueueAsync(queueBm);
         }
 
         private QueueBm CheckBusinessRulesAndCreateQueue(NewQueueDto queueDto)

@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using ElQueue.BLL.Services;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Repositories;
@@ -7,6 +6,8 @@ using ElQueue.DAL.Repositories.Interfaces;
 using ElQueue.DAL.UnitOfWork;
 using ElQueue.Orchestrator.QueueOrchestrator;
 using ElQueue.Web.Configuration;
+using ElQueue.Web.Services;
+using ElQueue.Web.Services.QueueComposer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -48,8 +49,10 @@ namespace ElQueue.Web
 
             services.AddScoped<IQueueService, QueueService>();
 
-            services.AddScoped<IQueueOrchestrator, QueueOrchestrator>();
+            services.AddScoped<IQueueComposer, QueueComposer>();
+            services.AddScoped<IQueueProcessService, QueueProcessService>();
 
+            services.AddScoped<IQueueOrchestrator, QueueOrchestrator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
