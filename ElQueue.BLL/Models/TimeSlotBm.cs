@@ -9,11 +9,11 @@ namespace ElQueue.BLL.Models
 
         public int UserId { get; set; }
 
-        public UserBm User { get; set; }
+        public RawUser User { get; set; }
 
         public int QueueId { get; set; }
 
-        public QueueBm Queue { get; set; }
+        public RawQueue Queue { get; set; }
 
         public DateTime TimeSlotStart { get; set; }
 

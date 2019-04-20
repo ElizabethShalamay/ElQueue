@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dawn;
 using ElQueue.BLL.Models;
-using ElQueue.BLL.Services;
+using ElQueue.BLL.Services.QueueService;
 using ElQueue.DAL.Models;
 using ElQueue.DAL.UnitOfWork;
 using ElQueue.Orchestrator.Dtos;

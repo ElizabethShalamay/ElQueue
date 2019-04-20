@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElQueue.Web", "ElQueue.Web\ElQueue.Web.csproj", "{FE3AB7D6-5E8F-4163-A059-CB64839ACA18}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElQueue.DAL", "ElQueue.DAL\ElQueue.DAL.csproj", "{13AD0639-E784-4D1F-A08E-1B50D808835D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElQueue.BLL", "ElQueue.BLL\ElQueue.BLL.csproj", "{34CF76A6-5EAD-45CC-B43D-F3B7E7C460DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElQueue.BLL", "ElQueue.BLL\ElQueue.BLL.csproj", "{34CF76A6-5EAD-45CC-B43D-F3B7E7C460DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElQueue.Orchestrator", "ElQueue.Orchestrator\ElQueue.Orchestrator.csproj", "{47F507E7-42AA-49C9-8BF5-B7A636F941F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElQueue.Orchestrator", "ElQueue.Orchestrator\ElQueue.Orchestrator.csproj", "{47F507E7-42AA-49C9-8BF5-B7A636F941F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

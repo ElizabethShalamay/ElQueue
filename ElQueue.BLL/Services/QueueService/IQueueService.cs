@@ -3,7 +3,7 @@ using ElQueue.DAL.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ElQueue.BLL.Services
+namespace ElQueue.BLL.Services.QueueService
 {
     public interface IQueueService
     {
