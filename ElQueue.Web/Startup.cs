@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using ElQueue.BLL.Services;
+using ElQueue.BLL.Services.TimeSlotService;
 using ElQueue.DAL.Infrastructure;
 using ElQueue.DAL.Repositories;
 using ElQueue.DAL.Repositories.Interfaces;
 using ElQueue.DAL.UnitOfWork;
 using ElQueue.Orchestrator.QueueOrchestrator;
+using ElQueue.Orchestrator.TimeSlotOrchestrator;
 using ElQueue.Web.Configuration;
 using ElQueue.Web.Services;
 using ElQueue.Web.Services.QueueComposer;
+using ElQueue.Web.Services.TimeSlotProcessService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -48,11 +51,14 @@ namespace ElQueue.Web
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IQueueService, QueueService>();
+            services.AddScoped<ITimeSlotService, TimeSlotService>();
 
             services.AddScoped<IQueueComposer, QueueComposer>();
             services.AddScoped<IQueueProcessService, QueueProcessService>();
+            services.AddScoped<ITimeSlotProcessService, TimeSlotProcessService>();
 
             services.AddScoped<IQueueOrchestrator, QueueOrchestrator>();
+            services.AddScoped<ITimeSlotOrchestrator, TimeSlotOrchestrator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
