@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using ElQueue.BLL.Models;
+using ElQueue.Orchestrator.Dtos;
 using ElQueue.Orchestrator.QueueOrchestrator;
+using ElQueue.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElQueue.Web.Controllers
@@ -12,15 +13,14 @@ namespace ElQueue.Web.Controllers
     public class QueuesController : ControllerBase
     {
         private readonly IQueueOrchestrator _queueOrchestrator;
-        private readonly IMapper _mapper;
+        private readonly IQueueProcessService _queueProcessService;
 
-        public QueuesController(IQueueOrchestrator queueOrchestrator, IMapper mapper)
+        public QueuesController(IQueueOrchestrator queueOrchestrator, IQueueProcessService queueProcessService)
         {
             _queueOrchestrator = queueOrchestrator;
-            _mapper = mapper;
+            _queueProcessService = queueProcessService;
         }
 
-        // GET api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<QueueBm>>> Get()
         {
@@ -28,7 +28,6 @@ namespace ElQueue.Web.Controllers
             return Ok(queues);
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public async Task<ActionResult<QueueBm>> Get(int id)
         {
@@ -40,19 +39,20 @@ namespace ElQueue.Web.Controllers
             return Ok(await _queueOrchestrator.GetQueueByIdAsync(id));
         }
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] NewQueueDto queueDto)
+        {
+            return await _queueProcessService.ProcessQueueAdditionAsync(queueDto);
+        }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPut()]
+        public async Task<ActionResult> Put(int? id, [FromBody] NewQueueDto newQueueDto)
+        {
+            return _queueProcessService.ShouldCreateQueue(id)
+                ? await _queueProcessService.ProcessQueueAdditionAsync(newQueueDto)
+                : await _queueProcessService.ProcessQueueUpdateAsync(newQueueDto, (int)id);
+        }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -61,7 +61,6 @@ namespace ElQueue.Web.Controllers
 
             await _queueOrchestrator.DeleteQueueAsync(id);
             return new NoContentResult();
-
         }
     }
 }
