@@ -14,10 +14,14 @@ namespace ElQueue.DAL.Repositories.Interfaces
 
         Task<IEnumerable<TimeSlot>> GetAsync();
 
-        Task CreateAsync(TimeSlot entity);
+        Task CreateAsync(IEnumerable<TimeSlot> entity);
 
         Task DeleteAsync(int id);
 
+        Task DeleteAsync(IEnumerable<int> id);
+
         Task<bool> ExistsAsync(int id);
+
+        void Update(TimeSlot timeSlot);
     }
 }

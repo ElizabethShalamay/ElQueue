@@ -17,15 +17,24 @@ namespace ElQueue.DAL.Repositories
             _context = context;
         }
 
-        public async Task CreateAsync(TimeSlot entity)
+        public async Task CreateAsync(IEnumerable<TimeSlot> entities)
         {
-            await _context.TimeSlots.AddAsync(entity);
+            foreach(var entity in entities)
+            {
+                await _context.TimeSlots.AddAsync(entity);
+            }
         }
 
         public async Task DeleteAsync(int id)
         {
             var timeSlotToDelete = await _context.TimeSlots.FindAsync(id);
             _context.TimeSlots.Remove(timeSlotToDelete);
+        }
+
+        public async Task DeleteAsync(IEnumerable<int> ids)
+        {
+            var timeSlotsToDelete = await GetAsync(timeSlot => ids.Contains(timeSlot.Id));
+            _context.TimeSlots.RemoveRange(timeSlotsToDelete);
         }
 
         public async Task<bool> ExistsAsync(int id)
@@ -60,6 +69,11 @@ namespace ElQueue.DAL.Repositories
                 .Include(timeSlot => timeSlot.Queue)
                 .Include(timeSlot => timeSlot.User)
                 .ToListAsync();
+        }
+
+        public void Update(TimeSlot entity)
+        {
+            _context.Update(entity);
         }
     }
 }
