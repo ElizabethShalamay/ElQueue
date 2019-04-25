@@ -7,6 +7,6 @@ namespace ElQueue.Web.Services.TimeSlotProcessService
     public interface ITimeSlotProcessService
     {
         Task<ActionResult> ProcessTimeSlotAdditionAsync(TimeSlotTemplate template);
-        Task<ActionResult> ProcessTimeSlotSelectionAsync(int id, int userId);
+        Task<ActionResult> ProcessTimeSlotSelectionAsync(int id, string userId);
     }
 }
