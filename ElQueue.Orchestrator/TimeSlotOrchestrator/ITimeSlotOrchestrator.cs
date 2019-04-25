@@ -17,6 +17,6 @@ namespace ElQueue.Orchestrator.TimeSlotOrchestrator
 
         Task ClearTimeSlotAsync(int id);
 
-        Task SelectSlotAsync(int id, int userId);
+        Task SelectSlotAsync(int id, string userId);
     }
 }
