@@ -4,10 +4,12 @@ using ElQueue.BLL.Models;
 using ElQueue.Orchestrator.Dtos;
 using ElQueue.Orchestrator.QueueOrchestrator;
 using ElQueue.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElQueue.Web.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class QueuesController : ControllerBase
@@ -21,6 +23,7 @@ namespace ElQueue.Web.Controllers
             _queueProcessService = queueProcessService;
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<QueueBm>>> Get()
         {
