@@ -52,7 +52,7 @@ namespace ElQueue.Web.Controllers
         }
 
         [HttpPut("{id}/select")]
-        public async Task<ActionResult> SelectSlot(int id, [FromQuery] int userId)
+        public async Task<ActionResult> SelectSlot(int id, [FromQuery] string userId)
         {
             if (!await _timeSlotOrchestrator.CheckIfTimeSlotExistsAsync(id))
             {

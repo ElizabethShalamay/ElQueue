@@ -8,7 +8,7 @@ namespace ElQueue.DAL.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetAsync(int id);
+        Task<User> GetAsync(string id);
 
         Task<IEnumerable<User>> GetAsync(Expression<Func<User, bool>> predicate);
 
@@ -16,10 +16,10 @@ namespace ElQueue.DAL.Repositories.Interfaces
 
         Task CreateAsync(User entity);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
 
         void UpdateAsync(User entity);
 
-        Task<bool> ExistsAsync(int id);
+        Task<bool> ExistsAsync(string id);
     }
 }

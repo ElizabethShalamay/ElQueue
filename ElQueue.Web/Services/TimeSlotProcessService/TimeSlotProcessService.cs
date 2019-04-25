@@ -26,7 +26,7 @@ namespace ElQueue.Web.Services.TimeSlotProcessService
             return new CreatedAtRouteResult(new { Ids = result.Select(timeSlot => timeSlot.Id)}, result);
         }
 
-        public async Task<ActionResult> ProcessTimeSlotSelectionAsync(int id, int userId)
+        public async Task<ActionResult> ProcessTimeSlotSelectionAsync(int id, string userId)
         {
             Guard.Argument(() => id).Positive();
 

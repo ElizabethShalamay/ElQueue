@@ -1,14 +1,13 @@
 ﻿using ElQueue.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElQueue.DAL.Infrastructure
 {
-    public class QueueContext : DbContext
+    public class QueueContext : IdentityDbContext<User>
     {
         public QueueContext(DbContextOptions<QueueContext> options) : base(options)
         { }
-
-        public DbSet<User> Users { get; set; }
 
         public DbSet<Account> Accounts { get; set; }
 
@@ -20,7 +19,7 @@ namespace ElQueue.DAL.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Account>().HasIndex(p => p.Name).IsUnique();
-            modelBuilder.Entity<User>().HasIndex(p => p.Name).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(p => p.UserName).IsUnique();
             modelBuilder.Entity<Queue>().HasIndex(g => g.Name).IsUnique();
 
             modelBuilder.Entity<Queue>().HasOne(queue => queue.Account)

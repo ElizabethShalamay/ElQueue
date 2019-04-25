@@ -70,7 +70,7 @@ namespace ElQueue.Orchestrator.TimeSlotOrchestrator
             return _mapper.Map<TimeSlotBm>(timeSlot);
         }
 
-        public async Task SelectSlotAsync(int id, int userId)
+        public async Task SelectSlotAsync(int id, string userId)
         {
             // TODO: add user id validation
             var timeSlot = await _storage.TimeSlots.GetAsync(id);
