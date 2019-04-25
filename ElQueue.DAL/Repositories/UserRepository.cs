@@ -22,18 +22,18 @@ namespace ElQueue.DAL.Repositories
             await _context.Users.AddAsync(entity);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             var userToDelete = await _context.Users.FindAsync(id);
             _context.Users.Remove(userToDelete);
         }
 
-        public async Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(string id)
         {
             return await _context.Users.AsNoTracking().AnyAsync(user => user.Id == id);
         }
 
-        public async Task<User> GetAsync(int id)
+        public async Task<User> GetAsync(string id)
         {
             var users = await _context.Users
                 .Include(user => user.TimeSlots)
